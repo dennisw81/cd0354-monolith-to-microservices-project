@@ -1,14 +1,9 @@
 # This file is used for convenience of local development.
 # DO NOT STORE YOUR CREDENTIALS INTO GIT
-export POSTGRES_USERNAME=dennis
-export POSTGRES_PASSWORD=dennisdb
 export POSTGRES_HOST=udagramdennisdevdb.cau82pb0khf5.us-west-1.rds.amazonaws.com
 export POSTGRES_DB=postgres
 export AWS_BUCKET=udagram-dennis-dev-bucket
 export AWS_REGION=us-west-1
 export AWS_PROFILE=default
-#export AWS_ACCESS_KEY_ID=AKIAWDFPVVGEEIC7LEKN
-#export AWS_SECRET_ACCESS_KEY=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
-#export AWS_SESSION_TOKEN=FwoGZXIvYXdzEE8aDBJtyXRNxNMZELU6CiLVAWZR+mGmkwO2DcPoRBpwmp63MJTCzHzGOqjRyzRyYaf2FA8nl/H4yLnqZyA3SAJX1ZPIw3zZJkboAzJTka5NpqwQyJIcKrAB4djUrFwiIh5Ru5yYejOPc1e9+PpqFHUc8m9iv9phSvf/K71XvgheX1xYtv8SPlm2oE0uPNc4vT4ZyFsbk21vTys1hJDcIwPXvk/4s50rMLblqOv94XPYGnBQvQHAWSw/Q9X1j9jkLVfvKbAyEw6Xvo3OF9OzkyLUG25LWL90HUeYDx2JSrEQW/kcMHPHxCi2s5acBjIteai/Lcf4B1agzFRPrKMFvlBT8nOCVxJlomPAWqPR/llSvbRIZjhOctjm64Qt
 export JWT_SECRET=testing
 export URL=http://localhost:8100

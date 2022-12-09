@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: dennisw81/udagram-frontend:v2
+          volumeMounts:
+            - name: aws-secret
+              mountPath: "/root/.aws/"
+              readOnly: true
+          env:
+            - name: POSTGRES_HOST
+              value: "udagramdennisdevdb.cau82pb0khf5.us-west-1.rds.amazonaws.com"
+            - name: POSTGRES_DB
+              value: "postgres"
+            - name: AWS_BUCKET
+              value: "udagram-dennis-dev-bucket"
+            - name: AWS_REGION
+              value: "us-west-1"
+            - name: AWS_PROFILE
+              value: "default"
+            - name: JWT_SECRET
+              value: "testing"
+            - name: URL
+              value: "http://localhost:8100"
+          ports:
+            - containerPort: 8100
+          imagePullPolicy: Always
+      volumes:
+        - name: aws-secret
+          secret:
+            secretName: aws-secret
