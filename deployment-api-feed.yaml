@@ -16,29 +16,67 @@ spec:
     spec:
       containers:
         - name: api-feed
-          image: dennisw81/udagram-api-feed:v1
+          image: dennisw81/udagram-api-feed:v2
           volumeMounts:
             - name: aws-secret
               mountPath: "/root/.aws/"
               readOnly: true
           env:
-            - name: POSTGRES_HOST
-              value: "udagramdennisdevdb.cau82pb0khf5.us-west-1.rds.amazonaws.com"
-            - name: POSTGRES_DB
-              value: "postgres"
-            - name: AWS_BUCKET
-              value: "udagram-dennis-dev-bucket"
-            - name: AWS_REGION
-              value: "us-west-1"
-            - name: AWS_PROFILE
-              value: "default"
-            - name: JWT_SECRET
-              value: "testing"
             - name: URL
-              value: "http://localhost:8100"
+              valueFrom:
+                configMapKeyRef:
+                  name: url
+                  key: URL
+            - name: AWS_MEDIA_BUCKET
+              valueFrom:
+                configMapKeyRef:
+                  name: aws-media-bucket
+                  key: AWS_MEDIA_BUCKET
+            - name: AWS_PROFILE
+              valueFrom:
+                configMapKeyRef:
+                  name: aws-profile
+                  key: AWS_PROFILE
+            - name: AWS_REGION
+              valueFrom:
+                configMapKeyRef:
+                  name: aws-region
+                  key: AWS_REGION
+            - name: JWT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: jwt-secret
+                  key: JWT_SECRET
+            - name: POSTGRES_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-database
+                  key: POSTGRES_DB
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-host
+                  key: POSTGRES_HOST
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: env-secret
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: env-secret
+                  key: POSTGRES_USERNAME
           ports:
             - containerPort: 8080
           imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "2048Mi"
+              cpu: "500m"
       volumes:
         - name: aws-secret
           secret:

@@ -16,7 +16,14 @@ spec:
     spec:
       containers:
         - name: reverseproxy
-          image: dennisw81/reverseproxy:v1
+          image: dennisw81/reverseproxy:v2
           ports:
             - containerPort: 8080
           imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"
